@@ -1,6 +1,8 @@
+import s from './navigation.module.css'
+
 function Navigation(){
     return(
-    <aside className={"aside"}>
+    <aside className={s.aside}>
         <nav>
             <ul>
                 <li>Profile</li>

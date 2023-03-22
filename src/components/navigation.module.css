@@ -1,0 +1,16 @@
+.aside{
+    grid-area: aside;
+    background: linear-gradient(90deg, rgba(229,229,229,1) 0%, white 100%);
+    border-radius: 0 10px 0 0;
+}
+
+.aside ul{
+    list-style: none;
+    padding: 0;
+    margin: 15px 30px;
+}
+
+.aside ul li{
+    font-size: 150%;
+    margin: 7px 0;
+}

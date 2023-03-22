@@ -1,0 +1,25 @@
+.about_me{
+    display: flex;
+}
+
+.avatar img{
+    width: 250px;
+    border-radius: 10px;
+    border: 3px #746EDD solid;
+    padding: 3px;
+}
+
+.info{
+    margin-left: 30px;
+    font-size: 150%;
+}
+
+.info h2{
+    margin: 0;
+}
+
+.info ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

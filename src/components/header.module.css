@@ -1,0 +1,14 @@
+.header{
+    grid-area: header;
+    background-color: white;
+    padding: 0 20px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: rgba(183, 183, 183, 0.72) 0 0 10px 0;
+}
+
+.header img{
+    height: 80%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

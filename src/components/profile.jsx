@@ -1,11 +1,13 @@
+import s from './profile.module.css'
+
 function Profile(){
     return(
-        <div className={"about-me"}>
-            <div className={"avatar"}>
+        <div className={s.about_me}>
+            <div className={s.avatar}>
                 <img src="https://yt3.googleusercontent.com/ytc/AL5GRJVNMJ3rUkEuWjhgjNctvK2LchSZ8wiEwkfWrBTLeA=s900-c-k-c0x00ffffff-no-rj" alt="avatar"/>
             </div>
-            <div className={"info-about-me"}>
-                <h2 className={"name"}>Chizh Alexandr</h2>
+            <div className={s.info}>
+                <h2>Chizh Alexandr</h2>
                 <ul>
                     <li>Date of Birth: 3 february</li>
                     <li>City: Moscow</li>

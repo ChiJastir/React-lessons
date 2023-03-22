@@ -18,68 +18,10 @@ body{
     margin: 0 auto;
 }
 
-.header{
-    grid-area: header;
-    background-color: white;
-    padding: 0 20px;
-    border-radius: 0 0 10px 10px;
-    box-shadow: rgba(183, 183, 183, 0.72) 0 0 10px 0;
-}
-
-.header img{
-    height: 80%;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.aside{
-    grid-area: aside;
-    background: linear-gradient(90deg, rgba(229,229,229,1) 0%, white 100%);
-    border-radius: 0 10px 0 0;
-}
-
-.aside ul{
-    list-style: none;
-    padding: 0;
-    margin: 15px 30px;
-}
-
-.aside ul li{
-    font-size: 150%;
-    margin: 7px 0;
-}
-
 .main{
     grid-area: main;
     background-color: white;
     padding: 15px;
     border-radius: 10px 10px 0 0;
     box-shadow: rgba(183, 183, 183, 0.72) 0 0 10px 0;
-}
-
-.about-me{
-    display: flex;
-}
-
-.avatar img{
-    width: 250px;
-    border-radius: 10px;
-    border: 3px #746EDD solid;
-    padding: 3px;
-}
-
-.info-about-me{
-    margin-left: 30px;
-    font-size: 150%;
-}
-
-.info-about-me h2{
-    margin: 0;
-}
-
-.info-about-me ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
