@@ -1,0 +1,18 @@
+.post{
+    display: flex;
+    border-radius: 10px;
+    border: 3px #746EDD solid;
+    padding: 3px 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.avatar{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+.text{
+    margin-left: 10px;
+}

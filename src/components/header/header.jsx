@@ -1,4 +1,4 @@
-import logo from '../img/full-logo.svg';
+import logo from '../../img/full-logo.svg';
 import s from './header.module.css'
 
 function Header(){
