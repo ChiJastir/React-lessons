@@ -1,8 +1,8 @@
 import s from './button.module.css'
 
-function Button(){
+function Button(props){
     return(
-        <button className={s.button}>send</button>
+        <button {...props} className={s.button}>{props.children}</button>
     )
 }
 

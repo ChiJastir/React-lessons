@@ -2,7 +2,7 @@
     display: flex;
     border-radius: 10px;
     border: 3px #746EDD solid;
-    padding: 3px 10px;
+    padding: 10px;
     align-items: center;
     margin-bottom: 10px;
 }
@@ -14,5 +14,6 @@
 }
 
 .text{
+    margin: 0;
     margin-left: 10px;
 }
