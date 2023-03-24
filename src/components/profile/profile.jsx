@@ -1,5 +1,6 @@
 import Posts from './posts/posts'
 import s from './profile.module.css'
+import Button from "../../UI/Button/button";
 
 function Profile(){
     return(

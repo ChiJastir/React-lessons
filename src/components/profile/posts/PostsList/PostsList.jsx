@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './PostsList.module.css'
 import Post from "./post/post";
+import Heading from "../../../../UI/Heading/heading";
 
 const PostsList = (props) => {
     if(!props.data.length)
-        return <h3 style={{color: "red"}} className={s.title}>Undefined posts</h3>
+        return <Heading className={s.title}>Undefined posts</Heading>
     else {
         return (
             <div>

@@ -3,6 +3,9 @@ import AddPost from "./AddPost/add-post";
 import s from './posts.module.css'
 import PostsList from "./PostsList/PostsList";
 import Filter from "./Filter/filter";
+import ModalWindow from "../../../UI/ModalWindow/modal-window";
+import Heading from "../../../UI/Heading/heading";
+import Button from "../../../UI/Button/button";
 
 function Posts(){
     const [data, setData] = useState([
@@ -31,8 +34,11 @@ function Posts(){
     const [filter, setFilter] = useState({sort : '', search: ''})
     const [searchedAndSortedPosts, setSearchedAndSortedPosts] = useState('')
 
+    const [visible, setVisible] = useState(false)
+
     function NewPost(post) {
         setData([...data, post])
+        setVisible(false)
     }
 
     function DeletePost(post) {
@@ -41,10 +47,16 @@ function Posts(){
 
     return(
         <div>
-            <h3 className={s.title}>My posts</h3>
-            <AddPost
-                NewPost={NewPost}
-            />
+            <Button onClick={() => setVisible(true)}>Add post</Button>
+            <Heading className={s.title}>Posts</Heading>
+            <ModalWindow
+                visible={visible}
+                setVisible={setVisible}
+            >
+                <AddPost
+                    NewPost={NewPost}
+                />
+            </ModalWindow>
             <Filter
                 filter={filter}
                 setFilter={setFilter}
