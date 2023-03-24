@@ -2,19 +2,27 @@ import React, {useState} from "react";
 import Button from "../../../../UI/Button/button";
 import s from './add-post.module.css'
 import Heading from "../../../../UI/Heading/heading";
+import Input from "../../../../UI/Input/input";
 
 const AddPost = (props) => {
-    const [message, setMessage] = useState("")
+    const [title, setTitle] = useState("")
+    const [body, setBody] = useState("")
 
     return(
-        <div className={s.add_post}>
-            <Heading>Add post</Heading>
-            <textarea placeholder="Add post" className={s.input} value={message} onChange={event => setMessage(event.target.value)}></textarea>
+        <div>
+            <Heading>Добавить пост</Heading>
+            <Input
+                value={title}
+                onChange={event => setTitle(event.target.value)}
+                className={s.title}
+                placeholder="Заголовок"
+            />
+            <textarea placeholder="Содержание" className={s.body} value={body} onChange={event => setBody(event.target.value)}></textarea>
             <Button className={s.button} onClick={() => {props.NewPost({
                 id: Date.now(),
-                avatar: 'https://yt3.googleusercontent.com/ytc/AL5GRJVNMJ3rUkEuWjhgjNctvK2LchSZ8wiEwkfWrBTLeA=s900-c-k-c0x00ffffff-no-rj',
-                content: message,
-            }); setMessage('')}}>send</Button>
+                title: title,
+                body: body,
+            }); setBody('')}}>Добавить</Button>
         </div>
     )
 }

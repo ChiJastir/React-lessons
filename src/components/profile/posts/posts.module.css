@@ -1,3 +1,17 @@
 .title{
     margin: 15px 0;
 }
+
+.filterAndButtons{
+    border-radius: 10px;
+    border: 3px #746EDD solid;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.buttons{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}

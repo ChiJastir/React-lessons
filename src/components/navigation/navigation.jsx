@@ -5,11 +5,11 @@ function Navigation(){
     <aside className={s.aside}>
         <nav>
             <ul>
-                <li>Profile</li>
-                <li>Messages</li>
-                <li>News</li>
-                <li>Music</li>
-                <li>Settings</li>
+                <li>Профиль</li>
+                <li>Сообщения</li>
+                <li>Новости</li>
+                <li>Музыка</li>
+                <li>Настройки</li>
             </ul>
         </nav>
     </aside>)

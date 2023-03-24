@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import Input from "../../../../UI/Input/input";
 import s from "./filter.module.css";
 import Select from "../../../../UI/Select/select";
@@ -9,7 +9,7 @@ const Filter = ({filter, setFilter, data, setSearchedAndSortedPosts}) => {
     setSearchedAndSortedPosts(usePosts(data, filter.sort, filter.search))
 
     return (
-        <div>
+        <div className={s.filter}>
             <Input
                 placeholder="Поиск"
                 value={filter.search}
@@ -17,10 +17,11 @@ const Filter = ({filter, setFilter, data, setSearchedAndSortedPosts}) => {
                 className={s.input}
             />
             <Select
+                className={s.select}
                 heading={'Сортировка'}
                 options={[
-                    {value: 'id', name: 'По номеру'},
-                    {value: 'content', name: 'По содержанию'},
+                    {value: 'title', name: 'По названию'},
+                    {value: 'body', name: 'По содержанию'},
                 ]}
                 value={filter.sort}
                 sortPost={key => setFilter({...filter, sort: key})}

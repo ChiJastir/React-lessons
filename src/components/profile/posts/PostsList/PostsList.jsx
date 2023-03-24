@@ -6,7 +6,7 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 
 const PostsList = (props) => {
     if(!props.data.length)
-        return <Heading className={s.title}>Undefined posts</Heading>
+        return <Heading className={s.title}>Посты не найдены</Heading>
     else {
         return (
             <TransitionGroup>

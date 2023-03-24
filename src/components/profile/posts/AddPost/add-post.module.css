@@ -1,4 +1,9 @@
-.input{
+.title{
+    width: calc(100% - 14px);
+    margin-top: 15px;
+}
+
+.body{
     width: calc(100% - 10px);
     height: 75px;
     margin: 15px 0;
@@ -9,7 +14,7 @@
     border: 1px #746EDD solid;
 }
 
-.input:focus{
+.body:focus{
     outline: none;
 }
 

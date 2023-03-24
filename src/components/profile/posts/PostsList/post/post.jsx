@@ -4,10 +4,11 @@ import Button from "../../../../../UI/Button/button";
 function Post(props){
     return(
         <div className={s.post}>
-            <img className={s.avatar} src={props.post.avatar} alt="avatar"/>
-            <p className={s.text}>{props.post.content}</p>
-            <p className={s.text}>{props.post.text}</p>
-            <Button onClick={ () => {props.delete(props.post)} }>Delete</Button>
+            <div>
+                <h4 className={s.text}>{props.post.title}</h4>
+                <p className={s.text}>{props.post.body}</p>
+            </div>
+            <Button onClick={ () => {props.delete(props.post)} }>Удалить</Button>
         </div>
     )
 }
