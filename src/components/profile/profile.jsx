@@ -1,5 +1,4 @@
 import Posts from './posts/posts'
-import LikesAndInput from "../likes-and-input/likes-and-input";
 import s from './profile.module.css'
 
 function Profile(){
@@ -18,7 +17,6 @@ function Profile(){
                     </ul>
                 </div>
             </div>
-            <LikesAndInput/>
             <Posts/>
         </div>
     )

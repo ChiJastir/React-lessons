@@ -1,5 +1,5 @@
 import s from './post.module.css'
-import Button from "../../../../UI/Button/button";
+import Button from "../../../../../UI/Button/button";
 
 function Post(props){
     return(

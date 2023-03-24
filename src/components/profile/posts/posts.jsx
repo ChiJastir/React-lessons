@@ -1,9 +1,8 @@
-import React, {useState, useMemo} from "react";
-import AddPost from "./add-post/add-post";
+import React, {useState} from "react";
+import AddPost from "./AddPost/add-post";
 import s from './posts.module.css'
 import PostsList from "./PostsList/PostsList";
-import Select from "../../../UI/Select/select";
-import post from "./post/post";
+import Filter from "./Filter/filter";
 
 function Posts(){
     const [data, setData] = useState([
@@ -29,18 +28,8 @@ function Posts(){
         },
     ])
 
-    const [sort, setSort] = useState('')
-    const [search, setSearch] = useState('')
-
-    const sortedPost = useMemo(() => {
-        if (sort)
-            return [...data].sort((a, b) => String(a[sort]).localeCompare(String(b[sort])))
-        return data
-    }, [sort, data])
-
-    const searchedAndSortedPosts = useMemo(() => {
-        return sortedPost.filter(post => post.content.toLowerCase().includes(search.toLowerCase()))
-    }, [search, sortedPost])
+    const [filter, setFilter] = useState({sort : '', search: ''})
+    const [searchedAndSortedPosts, setSearchedAndSortedPosts] = useState('')
 
     function NewPost(post) {
         setData([...data, post])
@@ -50,33 +39,22 @@ function Posts(){
         setData(data.filter(item => item.id !== post.id))
     }
 
-    function sortPost(key){
-        setSort(key)
-    }
-
     return(
         <div>
             <h3 className={s.title}>My posts</h3>
-            <AddPost NewPost={NewPost}/>
-            <input
-                type="text"
-                placeholder="Поиск"
-                value={search}
-                onChange={event => setSearch(event.target.value)}
+            <AddPost
+                NewPost={NewPost}
             />
-            <Select
-                heading={'Сортировка'}
-                options={[
-                    {value: 'id', name: 'По номеру'},
-                    {value: 'content', name: 'По содержанию'},
-                ]}
-                value={sort}
-                sortPost={key => sortPost(key)}
+            <Filter
+                filter={filter}
+                setFilter={setFilter}
+                data={data}
+                setSearchedAndSortedPosts={setSearchedAndSortedPosts}
             />
-            {searchedAndSortedPosts.length !== 0
-                ? <PostsList delete={DeletePost} data={searchedAndSortedPosts}/>
-                : <h3 style={{color: "red"}} className={s.title}>Undefined posts</h3>
-            }
+            <PostsList
+                delete={DeletePost}
+                data={searchedAndSortedPosts}
+            />
         </div>
     )
 }

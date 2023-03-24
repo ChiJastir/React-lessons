@@ -2,11 +2,11 @@
     width: calc(100% - 10px);
     height: 75px;
     margin: 0;
-    padding: 0;
-    border: 1px black solid;
     resize: none;
     padding: 5px;
     border-radius: 5px;
+    background-color: rgba(116, 110, 221, 0.16);
+    border: 1px #746EDD solid;
 }
 
 .input:focus{
