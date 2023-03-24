@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useMemo} from "react";
 import AddPost from "./add-post/add-post";
 import s from './posts.module.css'
 import PostsList from "./PostsList/PostsList";
+import Select from "../../../UI/Select/select";
+import post from "./post/post";
 
 function Posts(){
     const [data, setData] = useState([
@@ -27,6 +29,19 @@ function Posts(){
         },
     ])
 
+    const [sort, setSort] = useState('')
+    const [search, setSearch] = useState('')
+
+    const sortedPost = useMemo(() => {
+        if (sort)
+            return [...data].sort((a, b) => String(a[sort]).localeCompare(String(b[sort])))
+        return data
+    }, [sort, data])
+
+    const searchedAndSortedPosts = useMemo(() => {
+        return sortedPost.filter(post => post.content.toLowerCase().includes(search.toLowerCase()))
+    }, [search, sortedPost])
+
     function NewPost(post) {
         setData([...data, post])
     }
@@ -35,11 +50,33 @@ function Posts(){
         setData(data.filter(item => item.id !== post.id))
     }
 
+    function sortPost(key){
+        setSort(key)
+    }
+
     return(
         <div>
             <h3 className={s.title}>My posts</h3>
             <AddPost NewPost={NewPost}/>
-            <PostsList delete={DeletePost} data={data}/>
+            <input
+                type="text"
+                placeholder="Поиск"
+                value={search}
+                onChange={event => setSearch(event.target.value)}
+            />
+            <Select
+                heading={'Сортировка'}
+                options={[
+                    {value: 'id', name: 'По номеру'},
+                    {value: 'content', name: 'По содержанию'},
+                ]}
+                value={sort}
+                sortPost={key => sortPost(key)}
+            />
+            {searchedAndSortedPosts.length !== 0
+                ? <PostsList delete={DeletePost} data={searchedAndSortedPosts}/>
+                : <h3 style={{color: "red"}} className={s.title}>Undefined posts</h3>
+            }
         </div>
     )
 }
