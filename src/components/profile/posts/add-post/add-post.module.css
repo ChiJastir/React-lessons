@@ -16,3 +16,9 @@
 .add_post{
     padding-bottom: 10px;
 }
+
+.button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

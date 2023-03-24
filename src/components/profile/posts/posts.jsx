@@ -31,11 +31,15 @@ function Posts(){
         setData([...data, post])
     }
 
+    function DeletePost(post) {
+        setData(data.filter(item => item.id !== post.id))
+    }
+
     return(
         <div>
             <h3 className={s.title}>My posts</h3>
             <AddPost NewPost={NewPost}/>
-            <PostsList data={data}/>
+            <PostsList delete={DeletePost} data={data}/>
         </div>
     )
 }

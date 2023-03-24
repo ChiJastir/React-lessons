@@ -6,7 +6,7 @@ const PostsList = (props) => {
     return (
         <div>
             {props.data.map((post) =>
-                <Post avatar={post.avatar} key={post.id}>{post.content}</Post>
+                <Post delete={props.delete} post={post} key={post.id} />
             )}
         </div>
     );
