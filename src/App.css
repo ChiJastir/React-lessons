@@ -27,3 +27,25 @@ body{
     border-radius: 10px 10px 0 0;
     box-shadow: rgba(183, 183, 183, 0.72) 0 0 10px 0;
 }
+
+.post-enter {
+    opacity: 0;
+    transform: translateX(-150px);
+}
+
+.post-enter-active {
+    transform: translateX(0px);
+    opacity: 1;
+    transition: all 200ms ease-in;
+}
+
+.post-exit {
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.post-exit-active {
+    transform: translateX(150px);
+    opacity: 0;
+    transition: all 200ms ease-in;
+}
