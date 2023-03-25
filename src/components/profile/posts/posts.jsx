@@ -6,7 +6,10 @@ import Filter from "./Filter/filter";
 import ModalWindow from "../../../UI/ModalWindow/modal-window";
 import Heading from "../../../UI/Heading/heading";
 import Button from "../../../UI/Button/button";
-import axios from "axios";
+import PostsService from "../../../API/PostsService";
+import Loader from "../../../UI/Loader/loader";
+import {useFetching} from "../../../hooks/useFetching";
+import {getPagesCount} from "../../../utils/pages";
 
 function Posts(){
     const [data, setData] = useState([])
@@ -16,15 +19,26 @@ function Posts(){
 
     const [visible, setVisible] = useState(false)
 
-    useEffect(() => GetPosts, [])
+    const [totalPage, setTotalPage] = useState(0)
+    const [limit, setLimit] = useState(10)
+    const [page, setPage] = useState(1)
 
-    async function GetPosts(){
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-        setData(response.data)
+    let pagesArray = []
+    for (let i = 0; i < totalPage; i++) {
+        pagesArray.push(i+1)
     }
 
+    const [fetching, isLoading] = useFetching(async () => {
+        const response = await PostsService.Get(limit, page)
+        setData(response.data)
+        const totalCount = response.headers['x-total-count']
+        setTotalPage(getPagesCount(totalCount, limit))
+    })
+
+    useEffect(() => fetching, [])
+
     function NewPost(post) {
-        setData([...data, post])
+        setData([post, ...data])
         setVisible(false)
     }
 
@@ -34,7 +48,6 @@ function Posts(){
 
     return(
         <div>
-
             <Heading className={s.title}>Посты</Heading>
             <ModalWindow
                 visible={visible}
@@ -55,10 +68,14 @@ function Posts(){
                     <Button onClick={() => setVisible(true)}>Добавить пост</Button>
                 </div>
             </div>
-            <PostsList
-                delete={DeletePost}
-                data={searchedAndSortedPosts}
-            />
+            {isLoading
+                ? <div style={{display: "flex", justifyContent: "center"}}><Loader/></div>
+                : <PostsList
+                    delete={DeletePost}
+                    data={searchedAndSortedPosts}
+                />
+            }
+            {pagesArray.map(page => <Button>{page}</Button>)}
         </div>
     )
 }
