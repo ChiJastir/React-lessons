@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import AddPost from "./AddPost/add-post";
 import s from './posts.module.css'
 import PostsList from "./PostsList/PostsList";
@@ -10,6 +10,7 @@ import PostsService from "../../../API/PostsService";
 import Loader from "../../../UI/Loader/loader";
 import {useFetching} from "../../../hooks/useFetching";
 import {getPagesCount} from "../../../utils/pages";
+import {usePages} from "../../../hooks/usePages";
 
 function Posts(){
     const [data, setData] = useState([])
@@ -23,10 +24,7 @@ function Posts(){
     const [limit, setLimit] = useState(10)
     const [page, setPage] = useState(1)
 
-    let pagesArray = []
-    for (let i = 0; i < totalPage; i++) {
-        pagesArray.push(i+1)
-    }
+    const pagesArray = usePages(totalPage)
 
     const [fetching, isLoading] = useFetching(async () => {
         const response = await PostsService.Get(limit, page)
@@ -35,7 +33,7 @@ function Posts(){
         setTotalPage(getPagesCount(totalCount, limit))
     })
 
-    useEffect(() => fetching, [])
+    useEffect(() => {fetching()}, [page])
 
     function NewPost(post) {
         setData([post, ...data])
@@ -44,6 +42,7 @@ function Posts(){
 
     function DeletePost(post) {
         setData(data.filter(item => item.id !== post.id))
+        setTotalPage(totalPage - 1)
     }
 
     return(
@@ -73,9 +72,11 @@ function Posts(){
                 : <PostsList
                     delete={DeletePost}
                     data={searchedAndSortedPosts}
+                    pagesArray={pagesArray}
+                    page={page}
+                    setPage={setPage}
                 />
             }
-            {pagesArray.map(page => <Button>{page}</Button>)}
         </div>
     )
 }

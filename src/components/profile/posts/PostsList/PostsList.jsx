@@ -19,6 +19,15 @@ const PostsList = (props) => {
                         <Post delete={props.delete} post={post} />
                     </CSSTransition>
                 )}
+                <div className={s.pages_list}>
+                    {props.pagesArray.map(page =>
+                        <span
+                            key={page}
+                            className={page === props.page ? [s.pages_list_item, s.active].join(' ') : s.pages_list_item}
+                            onClick={() => props.setPage(page)}
+                        >{page}</span>
+                    )}
+                </div>
             </TransitionGroup>
         )
     }
